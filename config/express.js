@@ -1,6 +1,6 @@
-module.exports = function () {
-    console.log("modulo carregado");
-    var app = require('express')();
+var app = require('express')();
     app.set('view engine', 'ejs');
+
+module.exports = function () {
     return app;
 };
