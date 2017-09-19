@@ -7,9 +7,9 @@ module.exports = function(app){
 
         //após ser carregado no express-load, ele vai pelo caminho da pasta
         var connection = app.infra.connectionFactory();
-        var produtosBanco = new app.infra.ProdutosDAO(connection);
+        var produtosDAO = new app.infra.ProdutosDAO(connection);
 
-        produtosBanco.lista(function (err, result) {
+        produtosDAO.lista(function (err, result) {
             if(err){
                 console.error('erro aconteceu na consulta', err);
             }else{
@@ -27,16 +27,21 @@ module.exports = function(app){
     });
 
     app.post('/produtos/salva',function(request, response){
+
+        var produto = request.body;
+
         var connection = app.infra.connectionFactory();
         var produtosDAO = new app.infra.ProdutosDAO(connection);
 
-        produtosDAO.salvar(request.body, function (err, result) {
+        produtosDAO.salvar(produto, function (err, result) {
             if(err){
                 console.error('erro aconteceu no insert', err);
             }else{
-                response.render('produtos/form');
+                response.redirect('/produtos');
             }
         });
+
+        connection.end();
 
     });
 
