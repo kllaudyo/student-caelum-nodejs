@@ -7,14 +7,16 @@ module.exports = function(app){
 
         //após ser carregado no express-load, ele vai pelo caminho da pasta
         var connection = app.infra.connectionFactory();
+        var produtosBanco = app.infra.produtosBanco;
 
-        connection.query('select * from livros', function (err, result) {
+        produtosBanco.lista(connection, function (err, result) {
             if(err){
-                console.log('erro',err);
+                console.error('erro aconteceu na consulta', err);
             }else{
                 response.render('produtos/lista', {'lista':result});
             }
         });
+
         connection.end();
 
     });
