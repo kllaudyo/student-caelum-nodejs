@@ -7,7 +7,7 @@ module.exports = function(app){
 
         //após ser carregado no express-load, ele vai pelo caminho da pasta
         var connection = app.infra.connectionFactory();
-        var produtosBanco = app.infra.produtosBanco(connection);
+        var produtosBanco = new app.infra.produtosBanco(connection);
 
         produtosBanco.lista(function (err, result) {
             if(err){
