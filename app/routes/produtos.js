@@ -20,7 +20,7 @@ module.exports = function(app){
             if(err){
                 console.log('erro',err);
             }else{
-                response.send(result);
+                response.render('produtos/lista', {'lista':result});
             }
         });
 
