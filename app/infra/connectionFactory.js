@@ -4,11 +4,16 @@
 
 var driver = require('mysql');
 
-module.exports = function () {
+var doConnection = function () {
     return driver.createConnection({
         host : 'localhost',
         user : 'root',
         password : 'root',
         database : 'casadocodigo'
     });
+};
+
+//wrapper, função embrulha outra função
+module.exports = function () {
+    return doConnection;
 };
