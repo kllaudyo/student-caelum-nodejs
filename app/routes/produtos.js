@@ -2,20 +2,12 @@
  * Created by claudio on 18/09/17.
  */
 
+var dbConnection = require('../infra/dbConnection');
+
 module.exports = function(app){
-    app.get('/produtos', function(request, response){
 
-        //objeto driver do mysql
-        var mysql = require('mysql');
-
-        //criando a conexão mysql
-        var connection = mysql.createConnection({
-            host : 'localhost',
-            user : 'root',
-            password : 'root',
-            database : 'casadocodigo'
-        });
-
+    app.get('/produtos', function(request, response) {
+        var connection = dbConnection();
         connection.query('select * from livros', function (err, result) {
             if(err){
                 console.log('erro',err);
@@ -23,8 +15,8 @@ module.exports = function(app){
                 response.render('produtos/lista', {'lista':result});
             }
         });
-
         connection.end();
 
     });
+
 };
