@@ -26,4 +26,18 @@ module.exports = function(app){
         response.render('produtos/form');
     });
 
+    app.post('/produtos/salva',function(request, response){
+        var connection = app.infra.connectionFactory();
+        var produtosDAO = new app.infra.ProdutosDAO(connection);
+
+        produtosDAO.salvar(request.body, function (err, result) {
+            if(err){
+                console.error('erro aconteceu no insert', err);
+            }else{
+                response.render('produtos/form');
+            }
+        });
+
+    });
+
 };
