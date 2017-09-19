@@ -21,4 +21,9 @@ module.exports = function(app){
 
     });
 
+    app.get('/produtos/form', function (request,response) {
+        console.log("cheguei aqui");
+        response.render('produtos/form');
+    });
+
 };

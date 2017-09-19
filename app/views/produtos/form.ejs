@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="produtos/salva" method="post">
+        <div>
+            <label for="titulo">Titulo:</label>
+            <input type="text" id="titulo" name="titulo" placeholder="coloque o titulo" />
+        </div>
+        <hr />
+        <div>
+            <label for="titulo">Preço:</label>
+            <input type="text" id="preco" name="preco" placeholder="150,25" />
+        </div>
+        <hr />
+        <div>
+            <label for="titulo">Descrição:</label>
+            <textarea rows="10" id="descricao" name="descricao" placeholder="fale sobre livro">
+            </textarea>
+        </div>
+        <hr />
+        <div>
+            <input type="submit" value="Gravar" />
+        </div>
+    </form>
+</body>
+</html>
