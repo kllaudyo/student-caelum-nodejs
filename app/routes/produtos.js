@@ -7,9 +7,9 @@ module.exports = function(app){
 
         //após ser carregado no express-load, ele vai pelo caminho da pasta
         var connection = app.infra.connectionFactory();
-        var produtosBanco = app.infra.produtosBanco;
+        var produtosBanco = app.infra.produtosBanco(connection);
 
-        produtosBanco.lista(connection, function (err, result) {
+        produtosBanco.lista(function (err, result) {
             if(err){
                 console.error('erro aconteceu na consulta', err);
             }else{
