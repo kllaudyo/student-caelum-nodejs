@@ -1,7 +1,12 @@
 /**
  * Created by claudio on 18/09/17.
  */
+
 module.exports = function(app){
+
+    var renderizar = function(response, produto, erros){
+        response.render('produtos/form',{errosValidacao:erros, produto:produto});
+    };
 
     app.get('/produtos', function(request, response) {
 
@@ -30,7 +35,8 @@ module.exports = function(app){
 
     app.get('/produtos/form', function (request,response) {
         console.log("cheguei aqui");
-        response.render('produtos/form',{errosValidacao:{}});
+        //response.render('produtos/form',{errosValidacao:{}, produto:{}});
+        renderizar(response, {}, {});
     });
 
     app.post('/produtos',function(request, response){
@@ -43,7 +49,8 @@ module.exports = function(app){
 
         var erros = request.validationErrors();
         if(erros){
-            response.render('produtos/form',{errosValidacao:erros});
+            //response.render('produtos/form',{errosValidacao:erros, produto:produto});
+            renderizar(response, produto, erros);
             return;
         }
 
