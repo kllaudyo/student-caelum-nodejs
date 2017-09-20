@@ -49,8 +49,16 @@ module.exports = function(app){
 
         var erros = request.validationErrors();
         if(erros){
-            //response.render('produtos/form',{errosValidacao:erros, produto:produto});
-            renderizar(response, produto, erros);
+
+            response.format({
+                html:function(){
+                    renderizar(response, produto, erros);
+                },
+                json:function () {
+                    response.status(400).json(erros);
+                }
+            });
+
             return;
         }
 

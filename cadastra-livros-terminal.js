@@ -13,7 +13,7 @@ var settings = {
 };
 
 var produto = {
-    titulo : 'Expressão regular',
+    titulo : '',
     descricao : 'Livro de expressão regular',
     preco : 90
 };
