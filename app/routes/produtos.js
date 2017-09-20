@@ -4,8 +4,8 @@
 
 module.exports = function(app){
 
-    var renderizar = function(response, produto, erros){
-        response.render('produtos/form',{errosValidacao:erros, produto:produto});
+    var renderizar = function(response, status, produto, erros){
+        response.status(status).render('produtos/form',{errosValidacao:erros, produto:produto});
     };
 
     app.get('/produtos', function(request, response) {
@@ -36,7 +36,7 @@ module.exports = function(app){
     app.get('/produtos/form', function (request,response) {
         console.log("cheguei aqui");
         //response.render('produtos/form',{errosValidacao:{}, produto:{}});
-        renderizar(response, {}, {});
+        renderizar(response, 200, {}, {});
     });
 
     app.post('/produtos',function(request, response){
@@ -52,7 +52,7 @@ module.exports = function(app){
 
             response.format({
                 html:function(){
-                    renderizar(response, produto, erros);
+                    renderizar(response, 400, produto, erros);
                 },
                 json:function () {
                     response.status(400).json(erros);
