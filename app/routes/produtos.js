@@ -30,19 +30,20 @@ module.exports = function(app){
 
     app.get('/produtos/form', function (request,response) {
         console.log("cheguei aqui");
-        response.render('produtos/form');
+        response.render('produtos/form',{errosValidacao:{}});
     });
 
     app.post('/produtos',function(request, response){
 
         var produto = request.body;
 
-        var validadorTitulo = request.assert('titulo','Titulo é obrigatório');
-        validadorTitulo.notEmpty();
+        request.assert('titulo','Titulo é obrigatório').notEmpty();
+        request.assert('preco','Obrigatorio valor decimal').isFloat();
+
 
         var erros = request.validationErrors();
         if(erros){
-            response.render('produtos/form');
+            response.render('produtos/form',{errosValidacao:erros});
             return;
         }
 
