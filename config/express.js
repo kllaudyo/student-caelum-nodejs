@@ -1,6 +1,7 @@
 var express = require('express');
 var load = require('express-load');
 var bodyParser = require('body-parser');
+var expressValidator = require('express-validator');
 
 module.exports = function () {
 
@@ -16,6 +17,9 @@ module.exports = function () {
 
     //para dizer que aceita tambem body data em json
     app.use(bodyParser.json());
+
+    //adicionando a validação atráves de middleware
+    app.use(expressValidator());
 
     //tudo que for carregado automaticamente deve ser incluido no app
     //cwd informa a pasta padrão pra producurar as pastas routes e infra

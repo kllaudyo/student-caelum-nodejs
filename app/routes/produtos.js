@@ -37,6 +37,15 @@ module.exports = function(app){
 
         var produto = request.body;
 
+        var validadorTitulo = request.assert('titulo','Titulo é obrigatório');
+        validadorTitulo.notEmpty();
+
+        var erros = request.validationErrors();
+        if(erros){
+            response.render('produtos/form');
+            return;
+        }
+
         var connection = app.infra.connectionFactory();
         var produtosDAO = new app.infra.ProdutosDAO(connection);
 
