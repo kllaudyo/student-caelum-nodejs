@@ -13,7 +13,14 @@ module.exports = function(app){
             if(err){
                 console.error('erro aconteceu na consulta', err);
             }else{
-                response.render('produtos/lista', {'lista':result});
+                response.format({
+                    html : function(){
+                        response.render('produtos/lista', {'lista':result});
+                    },
+                    json : function(){
+                        response.json(result);
+                    }
+                });
             }
         });
 

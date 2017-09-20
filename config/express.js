@@ -14,6 +14,9 @@ module.exports = function () {
     //extende setado para true garante que o bodyParser consiga interpretar
     //formularios aninhando estrutura json.
 
+    //para dizer que aceita tambem body data em json
+    app.use(bodyParser.json());
+
     //tudo que for carregado automaticamente deve ser incluido no app
     //cwd informa a pasta padrão pra producurar as pastas routes e infra
     load('routes', {cwd: 'app'})
