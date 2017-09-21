@@ -3,10 +3,11 @@
  */
 
 var http = require('http');
+var assert = require('assert');
 
 describe('#ProdutosController', function(){
 
-    it('#listagem json', function(funcaoDeFinalizacao){
+    it('#listagem json', function(done){
 
         var request = {
             hostname:'localhost',
@@ -19,14 +20,9 @@ describe('#ProdutosController', function(){
 
         http.get(request, function(response){
 
-
-            if(response.statusCode===200 && response.headers['content-type'] == 'application/json; charset=utf-8'){
-                console.log(response.statusCode);
-                for(x in response.headers){
-                    console.log(x,'=',response.headers[x]);
-                }
-                funcaoDeFinalizacao();
-            }
+            assert.equal(response.statusCode, 302);
+            assert.equal(response.headers['content-type'], 'application/json; charset=utf-8');
+            done();
 
         });
 
