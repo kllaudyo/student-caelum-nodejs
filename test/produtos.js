@@ -14,4 +14,10 @@ describe('#ProdutosController', function(){
             .expect(200, done);
     });
 
+    it('#listagem html', function(done){
+        request.get('/produtos')
+            .expect('Content-Type',/html/)
+            .expect(200, done);
+    });
+
 });
