@@ -8,7 +8,7 @@ module.exports = function(app){
         response.status(status).render('produtos/form',{errosValidacao:erros, produto:produto});
     };
 
-    app.get('/produtos', function(request, response) {
+    app.get('/produtos', function(request, response, next) {
 
         //após ser carregado no express-load, ele vai pelo caminho da pasta
         var connection = app.infra.connectionFactory();
@@ -16,7 +16,7 @@ module.exports = function(app){
 
         produtosDAO.lista(function (err, result) {
             if(err){
-                console.error('erro aconteceu na consulta', err);
+                return next(err);
             }else{
                 response.format({
                     html : function(){
@@ -39,7 +39,7 @@ module.exports = function(app){
         renderizar(response, 200, {}, {});
     });
 
-    app.post('/produtos',function(request, response){
+    app.post('/produtos',function(request, response, next){
 
         var produto = request.body;
 
@@ -67,7 +67,7 @@ module.exports = function(app){
 
         produtosDAO.salvar(produto, function (err, result) {
             if(err){
-                console.error('erro aconteceu no insert', err);
+                return next(err);
             }else{
                 response.redirect('/produtos');
             }
