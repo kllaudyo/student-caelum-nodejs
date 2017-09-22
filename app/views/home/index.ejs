@@ -242,6 +242,7 @@
                          src="//cdn.shopify.com/s/files/1/0155/7645/t/177/assets/accepts_paypal.png?11981592617154272979"
                          border="0" alt="Paypal" width="130" height="80"/></li>
                 <li><img class="accepts-pagseguro"
+
                          src="//cdn.shopify.com/s/files/1/0155/7645/t/177/assets/logopagseguro.png?11981592617154272979"
                          border="0" alt="PagSeguro" width="180" height="26"/></li>
             </ul>
@@ -249,7 +250,14 @@
     </div>
 </footer>
     <script src="/js/jquery-3.1.1.slim.min.js"></script>
-    <script src="/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="/js/tether.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+        socket.on('novaPromocao',function(data){
+            alert("Livro em promocao " + data.livro.titulo);
+        });
+    </script>
 </body>
 </html>
