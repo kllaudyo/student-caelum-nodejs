@@ -30,5 +30,19 @@ module.exports = function () {
         .then('infra')
         .into(app);
 
+    //criando meus próprios middleware
+    app.use(function(request, response, next){
+        response.status(404).render('erros/404');
+        next();
+    });
+
+    app.use(function (error, request, response, next) {
+        if(process.env.NODE_ENV == 'production') {
+            response.status(500).render('erros/500');
+            return;
+        }
+        next();
+    });
+
     return app;
 };
